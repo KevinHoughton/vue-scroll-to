@@ -1,2 +1,4 @@
 Iknode_modules
 .editorconfig
+/.idea
+npm-debug.log
