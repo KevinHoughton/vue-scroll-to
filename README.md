@@ -1,4 +1,4 @@
-# vue-scrollTo
+# vue-scroll-to
 
 [Vue.js](https://github.com/vuejs/vue) directive.  
 Adds a directive that listens for click events and scrolls to elements.
@@ -8,14 +8,14 @@ Adds a directive that listens for click events and scrolls to elements.
 With [npm](http://npmjs.org) do:
 
 ```bash
-$ npm install vue-scrollTo --save
+$ npm install vue-scroll-to --save
 ```
 
 ## Usage
 
 ```js
 var Vue = require('vue');
-var vueScrollTo = require('vue-scrollTo');
+var vueScrollTo = require('vue-scroll-to');
 Vue.use(vueScrollTo);
 ```
 
@@ -29,7 +29,7 @@ Vue.use(vueScrollTo);
 
 ## Info
 
-Currently depends on jQuery, I would like to remove the dependency eventually.
+Currently depends on jQuery.
 
 ## License
 
