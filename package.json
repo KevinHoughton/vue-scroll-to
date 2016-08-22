@@ -1,0 +1,28 @@
+{
+  "name": "vue-scroll-to",
+  "version": "1.0.0",
+  "description": "Adds a directive that listens for click events and scrolls to elements.",
+  "main": "index.js",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "directive",
+    "scroll",
+    "scrollto",
+    "scroll-to",
+    "scroll to"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Kevin Houghton",
+    "email": "info@kevinhoughton.nl",
+    "twitter": "https://twitter.com/kevinhoughtonnn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KevinHoughton/vue-scroll-to"
+  },
+  "dependencies": {
+    "jquery": "^2.2.3"
+  }
+}
