@@ -21,7 +21,7 @@ exports.install = function(Vue) {
       });
 
       page.animate({
-        scrollTop: $(this.el).offset().top - 100
+        scrollTop: $(this.expression).offset().top - 100 + 'px'
       }, 1000, function() {
         page.off(events)
       })
