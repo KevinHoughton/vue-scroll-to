@@ -20,11 +20,16 @@ Vue.use(vueScrollTo);
 ```
 
 ```html
-<a href="#" v-scroll-to=".element">Scroll to .element</a>
+<a href="#" v-scroll-to=".element, 50px">Scroll to .element</a>
 
 <div class="element">
     Hi. I'm element.
 </div>
+```
+
+## Variables in directive
+```html
+v-scroll-to="<element>, <padding-in-px>"
 ```
 
 ## Info
