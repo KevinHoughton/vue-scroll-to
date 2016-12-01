@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/vue-scroll-to.png?downloads=true)](https://www.npmjs.com/package/vue-scroll-to)
+
 # vue-scroll-to
 
 [Vue.js](https://github.com/vuejs/vue) directive.  
