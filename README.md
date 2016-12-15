@@ -12,6 +12,10 @@ With [npm](http://npmjs.org) do:
 ```bash
 $ npm install vue-scroll-to --save
 ```
+or
+```bash
+$ yarn add vue-scroll-to
+```
 
 ## Usage
 
@@ -33,10 +37,6 @@ Vue.use(vueScrollTo);
 ```html
 v-scroll-to="<element>, <padding-in-px>"
 ```
-
-## Info
-
-Currently depends on jQuery.
 
 ## License
 

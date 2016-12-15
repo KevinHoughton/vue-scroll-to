@@ -22,7 +22,5 @@
     "type": "git",
     "url": "https://github.com/KevinHoughton/vue-scroll-to"
   },
-  "dependencies": {
-    "jquery": "^2.2.3"
-  }
+  "dependencies": { }
 }
