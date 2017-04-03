@@ -18,7 +18,7 @@ $ yarn add vue-scroll-to
 ```
 
 ## Usage
-
+Please note that it's necessary to use single quotes within the double quotes of the directive when defining the class and padding.
 ```js
 var Vue = require('vue');
 var vueScrollTo = require('vue-scroll-to');
@@ -26,7 +26,7 @@ Vue.use(vueScrollTo);
 ```
 
 ```html
-<a href="#" v-scroll-to=".element, 50px">Scroll to .element</a>
+<a href="#" v-scroll-to="'.element, 50px'">Scroll to .element</a>
 
 <div class="element">
     Hi. I'm element.
@@ -34,8 +34,9 @@ Vue.use(vueScrollTo);
 ```
 
 ## Variables in directive
+
 ```html
-v-scroll-to="<element>, <padding-in-px>"
+v-scroll-to="'<element>, <padding-in-px>'"
 ```
 
 ## License
