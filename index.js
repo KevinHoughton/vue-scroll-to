@@ -2,12 +2,12 @@
 
 window.$ = document.querySelectorAll.bind(document);
 
-exports.install = function(Vue) {
+exports.install = function (Vue) {
     var _ = exports.utils = {
-        $: function(selector) {
+        $: function (selector) {
             return document.querySelector(selector);
         },
-        on: function(element, events, handler) {
+        on: function (element, events, handler) {
             if (!(events instanceof Array)) {
                 events = [events];
             }
@@ -15,7 +15,7 @@ exports.install = function(Vue) {
                 element.addEventListener(events[i], handler);
             }
         },
-        off: function(element, events, handler) {
+        off: function (element, events, handler) {
             if (!(events instanceof Array)) {
                 events = [events];
             }
@@ -23,7 +23,7 @@ exports.install = function(Vue) {
                 element.removeEventListener(events[i], handler);
             }
         },
-        cumulativeOffset: function(element) {
+        cumulativeOffset: function (element) {
             var top = 0;
 
             do {
@@ -39,7 +39,7 @@ exports.install = function(Vue) {
 
     function handleClick(e) {
 
-        var getScrollTopElement =  function (e) {
+        var getScrollTopElement = function (e) {
             var top = 0;
 
             while (e.offsetParent != undefined && e.offsetParent != null) {
@@ -50,16 +50,16 @@ exports.install = function(Vue) {
             return top;
         };
 
-        var getScrollTopDocument = function() {
+        var getScrollTopDocument = function () {
             return document.documentElement.scrollTop + document.body.scrollTop;
         };
 
-        var smoothScrollTo = function(element, target, duration) {
+        var smoothScrollTo = function (element, target, duration) {
             target = Math.round(target);
             duration = Math.round(duration);
 
             if (duration < 0) {
-                return Promise.reject("bad duration");
+                return Promise.reject('bad duration');
             }
 
             if (duration === 0) {
@@ -73,25 +73,29 @@ exports.install = function(Vue) {
             var distance = target - start_top;
 
             // based on http://en.wikipedia.org/wiki/Smoothstep
-            var smooth_step = function(start, end, point) {
-                if(point <= start) { return 0; }
-                if(point >= end) { return 1; }
+            var smooth_step = function (start, end, point) {
+                if (point <= start) {
+                    return 0;
+                }
+                if (point >= end) {
+                    return 1;
+                }
 
                 var x = (point - start) / (end - start); // interpolation
 
-                return x*x*(3 - 2*x);
-            }
+                return x * x * (3 - 2 * x);
+            };
 
-            return new Promise(function(resolve, reject) {
+            return new Promise(function (resolve, reject) {
                 // This is to keep track of where the element's scrollTop is
                 // supposed to be, based on what we're doing
                 var previous_top = element.scrollTop;
 
                 // This is like a think function from a game loop
-                var scroll_frame = function() {
+                var scroll_frame = function () {
 
-                    if(element.scrollTop != previous_top) {
-                        reject("interrupted");
+                    if (element.scrollTop != previous_top) {
+                        reject('interrupted');
                         return;
                     }
 
@@ -102,12 +106,12 @@ exports.install = function(Vue) {
                     element.scrollTop = frameTop;
 
                     // check if we're done!
-                    if(now >= end_time) {
+                    if (now >= end_time) {
                         resolve();
                         return;
                     }
 
-                    if(element.scrollTop === previous_top && element.scrollTop !== frameTop) {
+                    if (element.scrollTop === previous_top && element.scrollTop !== frameTop) {
                         resolve();
                         return;
                     }
@@ -115,31 +119,33 @@ exports.install = function(Vue) {
                     previous_top = element.scrollTop;
 
                     setTimeout(scroll_frame, 0);
-                }
+                };
 
                 setTimeout(scroll_frame, 0);
             });
-        }
+        };
 
         var splitclass = this.expression.split(', ');
-        var padding = splitclass[1].replace(/\D/g,'');
+        var padding = splitclass[1].replace(/\D/g, '');
         var speed = 500;
         var moving_frequency = 15;
         var element;
         splitclass[0] = splitclass[0].replace('\'', '');
         splitclass[1] = splitclass[1].replace('\'', '');
 
-        if(element = document.querySelector(splitclass[0])) {
+        if (element = document.querySelector(splitclass[0])) {
 
-            var hop_count = speed/moving_frequency
+            var hop_count = speed / moving_frequency;
             var getScrollTopDocumentAtBegin = getScrollTopDocument();
             var gap = (getScrollTopElement(element) - getScrollTopDocumentAtBegin - padding) / hop_count;
 
-            for(var i = 1; i <= hop_count; i++) {
+            for (var i = 1; i <= hop_count; i++) {
 
-                (function() {
-                    var hop_top_position = gap*i;
-                    setTimeout(function(){  window.scrollTo(0, hop_top_position + getScrollTopDocumentAtBegin); }, moving_frequency*i);
+                (function () {
+                    var hop_top_position = gap * i;
+                    setTimeout(function () {
+                        window.scrollTo(0, hop_top_position + getScrollTopDocumentAtBegin);
+                    }, moving_frequency * i);
                 })();
             }
         }
@@ -147,12 +153,12 @@ exports.install = function(Vue) {
 
     Vue.directive('scroll-to', {
 
-        bind: function(el, binding) {
+        bind: function (el, binding) {
             _.on(el, 'click', handleClick.bind(binding));
         },
 
-        unbind: function(el) {
+        unbind: function (el) {
             _.off(el, 'click', handleClick);
         }
-    })
+    });
 };
