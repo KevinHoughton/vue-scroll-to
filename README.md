@@ -18,10 +18,13 @@ $ yarn add vue-scroll-to
 ```
 
 ## Usage
+
 Please note that it's necessary to use single quotes within the double quotes of the directive when defining the class and padding.
+
 ```js
-var Vue = require('vue');
-var vueScrollTo = require('vue-scroll-to');
+import Vue from 'vue';
+import vueScrollTo from 'vue-scroll-to';
+
 Vue.use(vueScrollTo);
 ```
 
