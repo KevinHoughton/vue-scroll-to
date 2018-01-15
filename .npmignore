@@ -1,4 +1,4 @@
-Iknode_modules
-.editorconfig
-/.idea
+node_modules/
 npm-debug.log
+
+.editorconfig
