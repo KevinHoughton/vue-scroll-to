@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = {
+var _ = {
     $: function (selector) {
         return document.querySelector(selector);
     },
@@ -8,7 +8,7 @@ const _ = {
         if (!(events instanceof Array)) {
             events = [events];
         }
-        for (let i = 0; i < events.length; i++) {
+        for (var i = 0; i < events.length; i++) {
             $element.addEventListener(events[i], handler);
         }
     },
@@ -16,14 +16,14 @@ const _ = {
         if (!(events instanceof Array)) {
             events = [events];
         }
-        for (let i = 0; i < events.length; i++) {
+        for (var i = 0; i < events.length; i++) {
             $element.removeEventListener(events[i], handler);
         }
     }
 };
 
 function getScrollTopElement($element) {
-    let top = 0;
+    var top = 0;
 
     while ($element.offsetParent !== undefined && $element.offsetParent != null) {
         top += $element.offsetTop + ($element.clientTop != null ? $element.clientTop : 0);
@@ -37,9 +37,9 @@ function getScrollTopDocument() {
     return document.documentElement.scrollTop + document.body.scrollTop;
 }
 
-const ScrollTo = {
-    install(Vue, config) {
-        const settings = {
+var ScrollTo = {
+    install: function(Vue, config) {
+        var settings = {
             speed: 500,
             padding: 0,
             movingFrequency: 15
@@ -48,7 +48,7 @@ const ScrollTo = {
         Object.assign(settings, config);
 
         function handleClick() {
-            let options = this.expression.split(', ');
+            var options = this.expression.split(', ');
 
             options = options.map(function (item) {
                 if (typeof item !== 'string') {
@@ -57,29 +57,29 @@ const ScrollTo = {
                 return item.replace(/\'/g, '');
             });
 
-            const selector = options[0];
-            const padding = (typeof options[1] === 'string')
+            var selector = options[0];
+            var padding = (typeof options[1] === 'string')
                 ? options[1].replace(/\D/g, '')
                 : settings.padding;
 
-            const $element = _.$(selector);
+            var $element = _.$(selector);
 
             if (!$element) {
                 throw new Error('$element is not defined, selector="' + selector + '" ');
             }
 
-            const hopCount = Math.ceil(settings.speed / settings.movingFrequency);
-            const documentScrollTop = getScrollTopDocument();
-            const gap = (getScrollTopElement($element) - documentScrollTop - padding) / hopCount;
+            var hopCount = Math.ceil(settings.speed / settings.movingFrequency);
+            var documentScrollTop = getScrollTopDocument();
+            var gap = (getScrollTopElement($element) - documentScrollTop - padding) / hopCount;
 
             if (gap === 0) {
                 // Do not scroll when current position is the same as target offset.
                 return;
             }
 
-            for (let i = 1; i <= hopCount; i++) {
+            for (var i = 1; i <= hopCount; i++) {
                 (function (i) {
-                    const hopTopPosition = gap * i;
+                    var hopTopPosition = gap * i;
 
                     setTimeout(function () {
                         window.scrollTo(0, hopTopPosition + documentScrollTop);
